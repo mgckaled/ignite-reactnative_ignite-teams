@@ -4,16 +4,16 @@ import { UsersThree } from 'phosphor-react-native'
 
 export const Container = styled(TouchableOpacity)`
 	width: 100%;
-	height: 90px;
+	height: 80px;
 
 	background-color: ${({ theme }) => theme.COLORS.GRAY_500};
 	border-radius: 6px;
 
 	flex-direction: row;
 	align-itens: center;
-	
+
 	padding: 24px;
-	margin-botton 12px
+	margin-bottom: 12px;
 `
 
 export const Title = styled.Text`
@@ -27,5 +27,5 @@ export const Icon = styled(UsersThree).attrs(({ theme }) => ({
 	color: theme.COLORS.GREEN_700,
 	weight: 'fill'
 }))`
-	margin-right: 20px;
+	margin-right: 24px;
 `
