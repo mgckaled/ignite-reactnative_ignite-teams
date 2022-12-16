@@ -3,6 +3,7 @@
 	"compilerOptions": {
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
+		"useUnknownInCatchVariables": true,
 		"types": ["@types/styled-components-react-native"],
 		"baseUrl": "./",
 		"paths": {
