@@ -3,7 +3,6 @@ import { useTheme } from 'styled-components/native'
 
 import { Container } from './styles'
 
-//
 type Props = TextInputProps & {
 	inputRef?: React.RefObject<TextInput>
 }

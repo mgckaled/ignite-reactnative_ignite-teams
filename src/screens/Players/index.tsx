@@ -12,6 +12,7 @@ import { ListEmpty } from '@components/ListEmpty'
 import { PlayerCard } from '@components/PlayerCard'
 import { PlayerStorageDTO } from '@storage/player/PlayerStorageDTO'
 import { playerAddByGroup } from '@storage/player/playerAddByGroup'
+import { playerRemoveByGroup } from '@storage/player/playerRemoveByGroup'
 import { playersGetByGroupAndTeam } from '@storage/player/playersGetByGroupAndTeam'
 import { AppError } from '@utils/AppError'
 
@@ -52,7 +53,7 @@ export function Players() {
 
 			setNewPlayerName('')
 
-			await fetchPlayersByTeam()
+			fetchPlayersByTeam()
 		} catch (error) {
 			if (error instanceof AppError) {
 				Alert.alert('Nova pessoa', error.message)
@@ -73,6 +74,18 @@ export function Players() {
 				'Pessoas',
 				'Não foi possível carregar as pessoas do time selecionado.'
 			)
+		}
+	}
+
+	async function handlePlayerRemove(playerName: string) {
+		try {
+			await playerRemoveByGroup(playerName, group)
+
+			fetchPlayersByTeam()
+		} catch (error) {
+			console.log(error)
+
+			Alert.alert('Remover pessoa', 'Não foi possível remover essa pessoa.')
 		}
 	}
 
@@ -117,7 +130,10 @@ export function Players() {
 				data={players}
 				keyExtractor={item => item.name}
 				renderItem={({ item }) => (
-					<PlayerCard name={item.name} onRemove={() => {}} />
+					<PlayerCard
+						name={item.name}
+						onRemove={() => handlePlayerRemove(item.name)}
+					/>
 				)}
 				ListEmptyComponent={() => (
 					<ListEmpty message="Não há pessoas nesse time" />
